@@ -1,0 +1,33 @@
+[
+    {
+        "snipId": "1",
+        "title": "first test",
+        "language": "javascript",
+        "label": "documentation",
+        "file" : "App.js",
+        "dateSnipped": "3/6/2019",
+        "content": "const App = () => { return ( <div className='App'> <NoteThumb codeString='bla' /> </div> );}",
+        "comments": ["a test snippet", "bla1"]
+    },
+    {
+        "snipId": "2",
+        "title": "second test",
+        "language": "javascript",
+        "label": "cheat",
+        "file" : "Root.js",
+        "dateSnipped": "3/6/2019",
+        "content": "const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;",
+        "comments": ["another test snippet", "bla2"]
+    },
+
+    {
+        "snipId": "3",
+        "title": "third test",
+        "language": "javascript",
+        "label": "cheat",
+        "file" : "Root.js",
+        "dateSnipped": "3/6/2019",
+        "content": "const store = createStore( reducers, composeEnhancers(applyMiddleware(reduxThunk)) );",
+        "comments": ["another test snippet", "bla3"]
+    }
+]

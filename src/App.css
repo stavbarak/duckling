@@ -31,3 +31,21 @@
     transform: rotate(360deg);
   }
 }
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+}
+.note-thumb {
+  padding: 10px;
+}
+
+/* .note-thumb {
+  background-color: #f7ea90;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  box-shadow: 6px 6px 5px 0px rgba(227,227,227,0.61);
+} */
