@@ -4,6 +4,7 @@ import {
   CLEAR_DATA_ITEM,
   ITEM_FETCHED,
   ITEM_DETAILS_FETCHED,
+  DELETE_CURRENT_ITEM,
   SWITCH_TAB,
   SIGN_IN,
   SIGN_OUT
@@ -50,18 +51,51 @@ export async function fetchData(dispatch) {
         )
         .then(json => {
           const currentItem = json.find((item) => {
-              return item.itemId === id ;
+              return item.snipId === id ;
             });
           dispatch(itemfetched(currentItem))
-          console.log(currentItem)
-          //dispatch(fetchItemDetails(currentItem))
+          //console.log(currentItem)
           })
     }
   }
 
-  export function clearDataItem() {
+
+  export function deleteDataItem(id) {   
+    return async function (dispatch) {
+      return await fetch(API_URL, {
+        method: 'GET'
+      })
+        .then(
+          response => response.json(),
+          error => console.log('An error occurred.', error)
+        )
+        .then(dispatch(deleteCurrentItem(id)))
+    }
+
+  }
+
+  export function deleteCurrentItem(id) {
     return {
-      type: CLEAR_DATA_ITEM
+      type: DELETE_CURRENT_ITEM,
+      payload: id
+    } 
+  }
+
+/*   export function deleteDataItem(id, callback){
+
+    const request = axios.delete(`${API_URL}/${id}`)
+        .then(() => callback());
+
+    return {
+        type: DELETE_TASK,
+        payload: id
+    }
+} */
+
+  export function clearDataItem(currentItem) {
+    return {
+      type: CLEAR_DATA_ITEM,
+      payload: currentItem
     }
   }
 

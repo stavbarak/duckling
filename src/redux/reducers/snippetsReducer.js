@@ -1,6 +1,9 @@
+/* import _ from 'lodash';
+ */
 import {
     DATA_FETCHED,
     CLEAR_DATA_ITEM,
+    DELETE_CURRENT_ITEM,
     ITEM_FETCHED,
     SWITCH_TAB
   } from 'redux/actions/types';
@@ -12,7 +15,7 @@ const InitialState = {
     currentTab: 'description'
 }
 
-const rootReducer = (state = InitialState, action) => {
+const snippetsReducer = (state = InitialState, action) => {
     switch(action.type) {
         case DATA_FETCHED:
             return {
@@ -31,6 +34,15 @@ const rootReducer = (state = InitialState, action) => {
                 ...state,
                 currentItem: null
             }
+
+        case DELETE_CURRENT_ITEM:
+            const newData = [...state.data].filter((elem) => {
+                return elem.snipId !== action.payload;
+            });
+            return {
+                ...state,
+                data: newData
+            }    
         case SWITCH_TAB:
             return {
                 ...state,
@@ -41,4 +53,4 @@ const rootReducer = (state = InitialState, action) => {
     }
 }
 
-export default rootReducer;
+export default snippetsReducer;

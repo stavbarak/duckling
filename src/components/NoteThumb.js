@@ -7,7 +7,7 @@ import NoteMenu from 'components/NoteMenu';
 import { Card } from 'antd';
 const { Meta } = Card;
 
-const NoteThumb = ({title, codeString, date, file}) => {
+const NoteThumb = ({title, codeString, date, file, id}) => {
  
   return (
     <Card className="note-thumb" title={title} >   
@@ -23,7 +23,7 @@ const NoteThumb = ({title, codeString, date, file}) => {
         <div className="additional">
             <textarea className="noteComment"></textarea>
         </div>
-        <NoteMenu />
+        <NoteMenu id={id}/>
     </Card>
   );
 }

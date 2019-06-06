@@ -4,7 +4,6 @@ import NoteThumb from 'components/NoteThumb';
 
 const NoteList = ({ data }) => {
     let noteItem = data.map((item, i) => {
-       /*  span={4} */
         return (   
             <Col xl={{ span: 8}} md={{ span: 8}} sm={{ span: 12}} key={(i)}>
                 <NoteThumb                       
