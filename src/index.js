@@ -10,9 +10,8 @@ import NoteThumb from 'components/NoteThumb';
 ReactDOM.render(
     <Root >
         <BrowserRouter>
-            <App>
-                
-                <Route path="/edit" component={ NoteEdit } /> 
+            <App>               
+                <Route path="/edit/:id" component={ NoteEdit } /> 
                 <Route path="/" component={ NoteThumb } />
             </App>
       </BrowserRouter>

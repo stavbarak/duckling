@@ -4,15 +4,18 @@ import {
     DATA_FETCHED,
     CLEAR_DATA_ITEM,
     DELETE_CURRENT_ITEM,
+    MAKE_CURRENT,
     ITEM_FETCHED,
-    SWITCH_TAB
+    ADD_COMMENT,
+    /* CLEAR_CURRENT_COMMENT,
+    SAVE_QUICK_COMMENT */
   } from 'redux/actions/types';
 
 const InitialState = {
     data: [],
     loaded: false,
     currentItem: null,
-    currentTab: 'description'
+    currentComment: ''
 }
 
 const snippetsReducer = (state = InitialState, action) => {
@@ -34,6 +37,16 @@ const snippetsReducer = (state = InitialState, action) => {
                 ...state,
                 currentItem: null
             }
+        /* case SAVE_QUICK_COMMENT:
+            return {
+                ...state,
+                currentComment: action.payload
+            }  */
+        /* case CLEAR_CURRENT_COMMENT:
+            return {
+                ...state,
+                currentComment: ''
+            }   */  
 
         case DELETE_CURRENT_ITEM:
             const newData = [...state.data].filter((elem) => {
@@ -42,12 +55,23 @@ const snippetsReducer = (state = InitialState, action) => {
             return {
                 ...state,
                 data: newData
-            }    
-        case SWITCH_TAB:
+            }   
+            
+        case MAKE_CURRENT:
             return {
                 ...state,
-                currentTab: action.payload
-            }      
+                currentItem: action.payload
+            }   
+            
+        case ADD_COMMENT: 
+
+            const newItem = {...state.currentItem};
+            newItem.comments.push(action.payload);
+            console.log(newItem)
+            return {
+                ...state,
+                currentItem: newItem
+            }    
         default:
             return state;
     }

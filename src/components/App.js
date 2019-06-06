@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData } from 'redux/actions';
-
+/* import { CommentStore } from 'contexts/QuickCommentContext'; */
 import NoteList from 'components/NoteList';
 import 'App.css';
 
@@ -15,9 +15,9 @@ class App extends Component {
   render () {
     const { loaded, data } = this.props;
     return (
-      <div>
-        { loaded ? <NoteList data={data} /> : null }
-      </div>
+        <div>
+            { loaded ? <NoteList data={data} /> : null }
+        </div>
     )
   }
 }
