@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData } from 'redux/actions';
+/* import Button from 'antd/lib/button'; */
+
 import NoteList from 'components/NoteList';
-/* import PlayboardView from 'components/PlayboardView';
- */import 'App.css';
+/* import PlayboardView from 'components/PlayboardView';*/
+import 'App.css';
 
 class App extends Component {
 

@@ -3,18 +3,28 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 /* import withHighlighting from 'components/withHighlighting';
  */
-import Paper from '@material-ui/core/Paper';
+import NoteMenu from 'components/NoteMenu';
+import { Card } from 'antd';
+const { Meta } = Card;
 
-const NoteThumb = ({title, codeString, date}) => {
-  /* const codeString = '(num) => num + 1'; */
+const NoteThumb = ({title, codeString, date, file}) => {
+ 
   return (
-    <Paper className="note-thumb">   
-        <div className="note-header">
-          <span><h6>{title}</h6></span>
-          <span><h6>{`created on ${date}`}</h6></span>
-        </div>
+    <Card className="note-thumb" title={title} >   
+        <Meta
+          description={`Snipped from ${file} at ${date}`}
+        />
         <SyntaxHighlighter language='javascript' style={docco}>{codeString}</SyntaxHighlighter>;
-    </Paper>
+
+        <div className="additional">
+          Quick comment:
+          
+        </div>
+        <div className="additional">
+            <textarea className="noteComment"></textarea>
+        </div>
+        <NoteMenu />
+    </Card>
   );
 }
 

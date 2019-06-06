@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 .App {
   text-align: center;
 }
@@ -35,9 +37,42 @@
 .note-header {
   display: flex;
   justify-content: space-between;
+  background-color: #e3f2fd;
+  padding: 0 10px;
+  align-items: center;
+
 }
 .note-thumb {
   padding: 10px;
+  /* background-color: #f7ea90; */
+}
+
+.noteGrid {
+  padding: 10px;
+}
+
+.ant-card-meta-description {
+  margin-bottom: 20px;
+}
+
+
+.additional {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  margin-top: 1rem;
+  color: rgba(0,0,0,0.45);
+}
+
+
+.noteComment {
+  width: 100%;
+}
+
+.noteMenu {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 /* .note-thumb {

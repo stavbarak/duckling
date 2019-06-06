@@ -1,46 +1,29 @@
 import React from 'react';
-
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-
+import { Row, Col } from 'antd';
 import NoteThumb from 'components/NoteThumb';
 
-
-const styles = theme => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(1),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-  });
-
-
-
-const NoteList = ({ data, classes }) => {
-    console.log(classes)
+const NoteList = ({ data }) => {
     let noteItem = data.map((item, i) => {
+       /*  span={4} */
         return (   
-            <Grid item xs={4} key= {(i)} >
-                <NoteThumb 
-                className={classes.paper}              
+            <Col xl={{ span: 8}} md={{ span: 8}} sm={{ span: 12}} key={(i)}>
+                <NoteThumb                       
                 id={ item.snipId } 
                 title={ item.title } 
                 date={ item.dateSnipped }
                 codeString ={ item.content }
+                file= {item.file}
                 />   
-            </Grid>
+            </Col>
         )
     });
 
     return (
-        <Grid container spacing={3} className="noteGrid">
+        <Row gutter={16} type="flex" className="noteGrid">
             { noteItem }
-        </Grid>
+        </Row>
     )
 }
 
 
-export default withStyles(styles)(NoteList);
+export default NoteList;
