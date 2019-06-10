@@ -93,6 +93,10 @@
   align-items: center;
 }
 
+header.header.ant-layout-header a {
+  color: #fff;
+}
+
 /* .note-thumb {
   background-color: #f7ea90;
   display: flex;

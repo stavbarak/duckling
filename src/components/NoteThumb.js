@@ -3,7 +3,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import { connect } from 'react-redux';
-import { deleteDataItem, saveComment, deleteComment } from 'redux/actions';
+import { deleteDataItem, saveComment } from 'redux/actions';
 
 import NoteMenu from 'components/NoteMenu';
 import { Card } from 'antd';

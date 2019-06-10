@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
-
+/* import { withRouter } from "react-router"; */
+import { Link } from "react-router-dom";
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -20,19 +21,21 @@ class LayoutWrapper extends Component {
       return (
         <Layout>
             <Header className="header" style={{ padding: '40px 10px', display: 'flex', alignItems: 'center', color: '#fff'}}>
-            <div className="logo" style={{ display: 'flex', paddingLeft: '6px'}}>
-                <span><img alt="logo" src="/kisspng-rubber-duck-clip-art-duck-5ab3e4a1cf3c94.0211275715217389138489.png" style={{ width: '50px'}}/></span>
-                <span style={{ marginLeft: '10px', fontSize: '30px', fontWeight: '500'}}>Duckling</span>
-            </div>
-            
-            
+                <Link to= "/">
+                    <div className="logo" style={{ display: 'flex', paddingLeft: '6px'}}>
+                        <span>
+                            <img alt="logo" src="/kisspng-rubber-duck-clip-art-duck-5ab3e4a1cf3c94.0211275715217389138489.png" style={{ width: '50px'}}/>           
+                        </span>
+                        <span style={{ marginLeft: '10px', fontSize: '30px', fontWeight: '500'}}>Duckling</span>              
+                    </div>
+                </Link> 
+        
                 <Menu
                     theme="dark"
                     mode="horizontal"
                     defaultSelectedKeys={['2']}
                     style={{ lineHeight: '64px' }}
-                >
-                    
+                >                   
                 </Menu>
             </Header>
             <Content >

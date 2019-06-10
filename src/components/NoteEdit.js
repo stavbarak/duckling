@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteDataItem, fetchDataItem, saveComment, deleteComment } from 'redux/actions';
+import { deleteDataItem, clearDataItem, fetchDataItem, saveComment, deleteComment } from 'redux/actions';
 import { Skeleton, Icon, Button } from 'antd';
 import NoteThumb from 'components/NoteThumb';
 
@@ -11,6 +11,11 @@ class NoteEdit extends Component {
 
     fetchDataItem(id);
   }
+
+  componentWillUnmount = () => {
+    const { clearDataItem } = this.props;
+    clearDataItem();
+}
 
   deleteComment = (comments, index) => {
     const { deleteComment } = this.props;
@@ -75,6 +80,7 @@ const mapDispatchToProps = dispatch => ({
   saveComment: (comment, id) => dispatch(saveComment(comment, id)),
   fetchDataItem: (id) => dispatch(fetchDataItem(id)),
   deleteDataItem: (id) => dispatch(deleteDataItem(id)),
+  clearDataItem: () => dispatch(clearDataItem())
 })
 
 

@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch'
 import {
   DATA_FETCHED,
-  /* CLEAR_DATA_ITEM, */
+  CLEAR_DATA_ITEM,
   ITEM_FETCHED,
   ITEM_DETAILS_FETCHED,
   DELETE_CURRENT_ITEM,
@@ -91,12 +91,12 @@ export function deleteCurrentItem(id) {
 }
 
 
-/* export function clearDataItem(currentItem) {
+export function clearDataItem(currentItem) {
   return {
     type: CLEAR_DATA_ITEM,
     payload: currentItem
   }
-} */
+}
 
 /* export function clearCurrentComment() {
   return {
