@@ -5,7 +5,7 @@ import NoteThumb from 'components/NoteThumb';
 const NoteList = ({ data }) => {
     let noteItem = data.map((item, i) => {
         return (   
-            <Col xl={{ span: 8}} md={{ span: 8}} sm={{ span: 12}} key={(i)}>
+            <Col xl={{ span: 8}} md={{ span: 12}} sm={{ span: 12}} xs={{ span: 12}} key={(i)}>
                 <NoteThumb                       
                 id={ item.snipId } 
                 title={ item.title } 

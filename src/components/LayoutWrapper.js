@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
 
-class LayoutWrapper extends React.Component {
+class LayoutWrapper extends Component {
     state = {
       collapsed: false,
     };
@@ -16,13 +16,12 @@ class LayoutWrapper extends React.Component {
     };
   
     render() {
-        const { children } = this.props;
-        console.log(children)
+      const { children } = this.props;
       return (
         <Layout>
             <Header className="header" style={{ padding: '40px 10px', display: 'flex', alignItems: 'center', color: '#fff'}}>
             <div className="logo" style={{ display: 'flex', paddingLeft: '6px'}}>
-                <span><img src="/kisspng-rubber-duck-clip-art-duck-5ab3e4a1cf3c94.0211275715217389138489.png" style={{ width: '50px'}}/></span>
+                <span><img alt="logo" src="/kisspng-rubber-duck-clip-art-duck-5ab3e4a1cf3c94.0211275715217389138489.png" style={{ width: '50px'}}/></span>
                 <span style={{ marginLeft: '10px', fontSize: '30px', fontWeight: '500'}}>Duckling</span>
             </div>
             
@@ -38,7 +37,7 @@ class LayoutWrapper extends React.Component {
             </Header>
             <Content >
                 <Layout style={{ padding: '24px 0', background: '#fff' }}>
-                    <Sider width={200} style={{ background: '#fff' }}>
+                    <Sider width={200} style={{ background: '#fff' }} collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                     <Menu
                         mode="inline"
                         defaultSelectedKeys={['1']}

@@ -7,10 +7,6 @@ import App from 'components/App';
 import NoteEdit from 'components/NoteEdit';
 import LayoutWrapper from 'components/LayoutWrapper';
 
-/* import { Layout } from 'antd';
-
-const { Header, Footer, Sider, Content } = Layout; */
-
 ReactDOM.render(
     <Root >
         <LayoutWrapper>
