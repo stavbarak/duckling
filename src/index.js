@@ -1,20 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './Root';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './index.css';
 import App from 'components/App';
 import NoteEdit from 'components/NoteEdit';
-import NoteThumb from 'components/NoteThumb';
+import LayoutWrapper from 'components/LayoutWrapper';
+
+/* import { Layout } from 'antd';
+
+const { Header, Footer, Sider, Content } = Layout; */
 
 ReactDOM.render(
     <Root >
-        <BrowserRouter>
-            <App>               
-                <Route path="/edit/:id" component={ NoteEdit } /> 
-                <Route path="/" component={ NoteThumb } />
-            </App>
-      </BrowserRouter>
+        <LayoutWrapper>
+            <BrowserRouter>
+                <Switch>               
+                    <Route path="/edit/:id" component={ NoteEdit } /> 
+                    <Route exact path="/" component={ App } />
+                </Switch>
+            </BrowserRouter>
+      </LayoutWrapper>
     </Root>,
     
     

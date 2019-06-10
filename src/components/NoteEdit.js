@@ -1,21 +1,15 @@
-import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import withHighlighting from 'components/withHighlighting';
+import React, { Component } from 'react';
 
 
-const NoteEdit = ({codeString}) => {
-    console.log('hi')
-  return (
-    <div className="note-thumb" contenteditable="true">    
-         <SyntaxHighlighter 
-         contenteditable="true"
-         language='javascript' 
-         style={docco}>
-         {codeString}
-         </SyntaxHighlighter>; 
-    </div>
-  );
+class NoteEdit extends Component {
+  render() {
+    console.log('hi hi')
+    return (
+      <div >    
+           Hi
+      </div>
+    );
+  } 
 }
 
-export default withHighlighting(NoteEdit);
+export default NoteEdit;
