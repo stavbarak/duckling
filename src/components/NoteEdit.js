@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteDataItem, fetchDataItem } from 'redux/actions';
-import { Skeleton } from 'antd';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-
-
+import { deleteDataItem, fetchDataItem, saveComment, deleteComment } from 'redux/actions';
+import { Skeleton, Icon, Button } from 'antd';
+import NoteThumb from 'components/NoteThumb';
 
 class NoteEdit extends Component {
   componentDidMount() {
@@ -15,11 +12,23 @@ class NoteEdit extends Component {
     fetchDataItem(id);
   }
 
+  deleteComment = (comments, index) => {
+    const { deleteComment } = this.props;
+
+    let spliced = [...comments];
+    spliced.splice(index, 1);
+    deleteComment(spliced);
+  }
+
   renderComments(comments) {
     let commentsList = comments.map((comment, i) => {
+      
       return (   
           <div key={i}>
-            {comment}
+            <div className="commentContainer">
+              <span>{comment}</span>
+              <span><Button type="link" onClick={()=>this.deleteComment(comments, i)}><Icon type="delete" /></Button></span>
+            </div>
           </div>
       )
   });
@@ -33,13 +42,19 @@ class NoteEdit extends Component {
         <Skeleton active />
       )
     } else {
-        const { title, language, comments, content, dateSnipped, file, label } = currentItem;
+        const { title, snipId, language, comments, content, dateSnipped, file, label } = currentItem;
         return (
-          <div>
-            <h1>{title}</h1>
-            <SyntaxHighlighter language={language} style={docco}>{content}</SyntaxHighlighter>;
-            {this.renderComments(comments)}
-          </div>
+          <NoteThumb                       
+                id={ snipId } 
+                title={ title } 
+                date={ dateSnipped }
+                codeString ={ content }
+                file= {file}
+      
+                >
+               
+            {this.renderComments(comments)}    
+          </NoteThumb>  
         )
     }
   }
@@ -56,6 +71,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  deleteComment: (comment, id) => dispatch(deleteComment(comment, id)),
+  saveComment: (comment, id) => dispatch(saveComment(comment, id)),
   fetchDataItem: (id) => dispatch(fetchDataItem(id)),
   deleteDataItem: (id) => dispatch(deleteDataItem(id)),
 })

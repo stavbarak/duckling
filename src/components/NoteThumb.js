@@ -3,7 +3,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import { connect } from 'react-redux';
-import { deleteDataItem, saveComment } from 'redux/actions';
+import { deleteDataItem, saveComment, deleteComment } from 'redux/actions';
 
 import NoteMenu from 'components/NoteMenu';
 import { Card } from 'antd';
@@ -29,8 +29,7 @@ class NoteThumb extends Component {
         this.setState ({
           currentCommentLocal: '',
         })
-    } 
-    
+    }   
   }
 
   deleteDataItem = () => {
@@ -47,7 +46,7 @@ class NoteThumb extends Component {
 
 
   render(){
-    const { title, codeString, date, file, id } = this.props;
+    const { title, codeString, date, file, id, children } = this.props;
     const { currentCommentLocal } = this.state;
     return (
       <Card className="note-thumb" title={title} >   
@@ -55,7 +54,9 @@ class NoteThumb extends Component {
             description={`Snipped from ${file} at ${date}`}
           />
           <SyntaxHighlighter language='javascript' style={docco}>{codeString}</SyntaxHighlighter>;
-  
+
+          {children}
+
           <div className="additional">
             Quick comment:
             
@@ -65,6 +66,7 @@ class NoteThumb extends Component {
               </textarea>
           </div>
           <NoteMenu id={id} onDelete={this.deleteDataItem} onSaveComment={this.addComment} />
+          
       </Card>
     );
   }

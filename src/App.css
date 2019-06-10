@@ -84,6 +84,15 @@
   flex-wrap: wrap;
 }
 
+.commentContainer {
+  padding: 10px;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* .note-thumb {
   background-color: #f7ea90;
   display: flex;

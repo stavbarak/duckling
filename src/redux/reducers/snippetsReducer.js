@@ -7,6 +7,7 @@ import {
     MAKE_CURRENT,
     ITEM_FETCHED,
     ADD_COMMENT,
+    DELETE_COMMENT,
     /* CLEAR_CURRENT_COMMENT,
     SAVE_QUICK_COMMENT */
   } from 'redux/actions/types';
@@ -37,16 +38,7 @@ const snippetsReducer = (state = InitialState, action) => {
                 ...state,
                 currentItem: null
             }
-        /* case SAVE_QUICK_COMMENT:
-            return {
-                ...state,
-                currentComment: action.payload
-            }  */
-        /* case CLEAR_CURRENT_COMMENT:
-            return {
-                ...state,
-                currentComment: ''
-            }   */  
+
 
         case DELETE_CURRENT_ITEM:
             const newData = [...state.data].filter((elem) => {
@@ -65,12 +57,18 @@ const snippetsReducer = (state = InitialState, action) => {
             
         case ADD_COMMENT: 
 
-            const newItem = {...state.currentItem};
-            newItem.comments.push(action.payload);
-            console.log(newItem)
+            const newItemFromAdd = {...state.currentItem};
+            newItemFromAdd.comments.push(action.payload);
             return {
                 ...state,
-                currentItem: newItem
+                currentItem: newItemFromAdd
+            }    
+
+        case DELETE_COMMENT:
+            const newItemFromDelete = {...state.currentItem};
+            newItemFromDelete.comments = action.payload;
+            return {
+                ...state, currentItem: newItemFromDelete
             }    
         default:
             return state;

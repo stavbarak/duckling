@@ -7,6 +7,7 @@ import {
   DELETE_CURRENT_ITEM,
   MAKE_CURRENT,
   ADD_COMMENT,
+  DELETE_COMMENT,
   /* CLEAR_CURRENT_COMMENT,
   SAVE_QUICK_COMMENT, */
   SIGN_IN,
@@ -125,23 +126,6 @@ export const dataFetched = (data) => {
     }
 }
 
-/* export const findCurrent = (id) => {
-  return async function (dispatch) {
-    return await fetch(API_URL, {
-      method: 'GET'
-    })
-      .then(
-        response => response.json(),
-        error => console.log('An error occurred.', error)
-      )
-      .then(json => {
-        const currentItem = json.find((item) => {
-            return item.snipId === id ;
-          });
-        dispatch(makeCurrent(currentItem))
-        })
-  }
-} */
 
 export const makeCurrent = (currentItem) => {
   return {
@@ -177,6 +161,15 @@ export const addComment = (comment) => {
     payload: comment
   }
 }
+
+
+export const deleteComment = (comments) => {
+  return {
+    type: DELETE_COMMENT,
+    payload: comments
+  }
+} 
+
 
 /* export const switchTab = (tab) => {
   return {

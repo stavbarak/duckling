@@ -12,6 +12,7 @@ const NoteList = ({ data }) => {
                 date={ item.dateSnipped }
                 codeString ={ item.content }
                 file= {item.file}
+                comments = {item.comments}
                 />   
             </Col>
         )
