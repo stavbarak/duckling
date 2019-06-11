@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteDataItem, clearDataItem, fetchDataItem, saveComment, deleteComment } from 'redux/actions';
-import { Skeleton, Icon, Button } from 'antd';
+import { Skeleton, Icon, Button, Card } from 'antd';
 import NoteComment from 'components/NoteComment';
 import AddComment from 'components/AddComment';
 
@@ -74,11 +74,12 @@ class CommentsSection extends Component {
       render() {
         const { currentCommentLocal } = this.state;
         return (
-          <div>
+          <Card>
+            <div>Comments</div>
             {this.renderData()}
             <div>Leave a comment</div>
             <AddComment onChange={this.handleInputChange} value={currentCommentLocal} onSubmit={this.addComment} />
-          </div>
+          </Card>
         );
       } 
 

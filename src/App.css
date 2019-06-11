@@ -102,6 +102,10 @@ header.header.ant-layout-header a {
   color: #d62325;
 }
 
+.ant-layout .ant-layout-has-sider {
+  background: #fafafa !important;
+}
+
 /* .note-thumb {
   background-color: #f7ea90;
   display: flex;
