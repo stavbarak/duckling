@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteDataItem, clearDataItem, fetchDataItem, saveComment, deleteComment } from 'redux/actions';
-import { Skeleton, Icon, Button } from 'antd';
+import { Skeleton } from 'antd';
 import NoteThumb from 'components/NoteThumb';
+import NoteMenu from 'components/NoteMenu';
+import CommentsSection from 'components/CommentsSection';
 
 class NoteEdit extends Component {
+
+  state = { currentCommentLocal: '' };
+
+
   componentDidMount() {
     const { id } = this.props.match.params;
     const { fetchDataItem } = this.props;
@@ -17,38 +23,23 @@ class NoteEdit extends Component {
     clearDataItem();
 }
 
-  deleteComment = (comments, index) => {
-    const { deleteComment } = this.props;
-
-    let spliced = [...comments];
-    spliced.splice(index, 1);
-    deleteComment(spliced);
+  deleteDataItem = (id) => {
+    const { deleteDataItem } = this.props;
+    deleteDataItem(id);
   }
 
-  renderComments(comments) {
-    let commentsList = comments.map((comment, i) => {
-      
-      return (   
-          <div key={i}>
-            <div className="commentContainer">
-              <span>{comment}</span>
-              <span><Button type="link" onClick={()=>this.deleteComment(comments, i)}><Icon type="delete" /></Button></span>
-            </div>
-          </div>
-      )
-  });
-  return commentsList;
-  }
 
   renderData() {
     const { currentItem } = this.props;
+
     if(!currentItem) {
       return (
         <Skeleton active />
       )
     } else {
-        const { title, snipId, language, comments, content, dateSnipped, file, label } = currentItem;
+        const { title, snipId, content, dateSnipped, file } = currentItem;
         return (
+          <div>
           <NoteThumb                       
                 id={ snipId } 
                 title={ title } 
@@ -57,9 +48,11 @@ class NoteEdit extends Component {
                 file= {file}
       
                 >
-               
-            {this.renderComments(comments)}    
+            <NoteMenu id={snipId} onDelete={this.deleteDataItem(snipId)} />
           </NoteThumb>  
+          <CommentsSection />
+          </div>
+
         )
     }
   }

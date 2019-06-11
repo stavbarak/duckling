@@ -59,22 +59,19 @@
 
 .additional {
   width: 100%;
-  justify-content: space-between;
-  display: flex;
+  /* justify-content: space-between;
+  display: flex; */
   margin-top: 1rem;
   color: rgba(0,0,0,0.45);
 }
 
 
-.noteComment {
+.noteAddComment {
   width: 100%;
 }
 
 .noteMenu {
   border: none;
-  margin-top: 10px;
-  justify-content: center;
-  display: flex;
 }
 
 .noteMenu .ant-card-body {
@@ -97,6 +94,14 @@ header.header.ant-layout-header a {
   color: #fff;
 }
 
+.deleteButton {
+  color: #f5222d;
+}
+
+.deleteButton:hover {
+  color: #d62325;
+}
+
 /* .note-thumb {
   background-color: #f7ea90;
   display: flex;
@@ -106,3 +111,19 @@ header.header.ant-layout-header a {
   height: 200px;
   box-shadow: 6px 6px 5px 0px rgba(227,227,227,0.61);
 } */
+
+@media (max-width: 700px)  { 
+  .ant-row-flex {
+    flex-flow: column wrap;
+  }
+
+  
+}
+  
+@media (max-width: 476px)  { 
+
+  .additional {
+    display: none;
+  }
+  
+}

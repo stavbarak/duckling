@@ -38,7 +38,7 @@ const snippetsReducer = (state = InitialState, action) => {
                 ...state,
                 currentItem: null
             }
-            
+
         case DELETE_CURRENT_ITEM:
             const newData = [...state.data].filter((elem) => {
                 return elem.snipId !== action.payload;

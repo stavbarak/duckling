@@ -135,7 +135,6 @@ export const makeCurrent = (currentItem) => {
 }
 
 export const saveComment = (comment, id) => {
-  
   return async function (dispatch) {
     return await fetch(API_URL, {
       method: 'GET'
@@ -145,10 +144,13 @@ export const saveComment = (comment, id) => {
         error => console.log('An error occurred.', error)
       )
       .then(json => {
+        
         const currentItem = json.find((item) => {
+          console.log(id)
             return item.snipId === id ;
           });
         dispatch(makeCurrent(currentItem))
+        console.log(currentItem)
         dispatch(addComment(comment))
         })
   }
