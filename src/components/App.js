@@ -11,8 +11,11 @@ import 'App.css';
 class App extends Component {
 
   componentDidMount () {
-    const { fetchData } = this.props;
-    fetchData();
+    const { fetchData, data } = this.props;
+    // condition totally temp, until I have real data to fetch from
+    if(!data.length > 0) {
+      fetchData();
+    }
   }
 
   render () {

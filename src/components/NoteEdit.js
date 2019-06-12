@@ -21,11 +21,13 @@ class NoteEdit extends Component {
   componentWillUnmount = () => {
     const { clearDataItem } = this.props;
     clearDataItem();
-}
+  }
 
-  deleteDataItem = (id) => {
-    const { deleteDataItem } = this.props;
-    deleteDataItem(id);
+  deleteDataItem = () => {   
+    const { id } = this.props.match.params;
+    const { deleteDataItem, history } = this.props;
+    history.push('/');
+    deleteDataItem(id);   
   }
 
 
@@ -37,19 +39,21 @@ class NoteEdit extends Component {
         <Skeleton active />
       )
     } else {
-        const { title, snipId, content, dateSnipped, file } = currentItem;
+        const { title, snipId, content, dateSnipped, file, tags } = currentItem;
         return (
           <div>
           <NoteThumb                       
-                id={ snipId } 
-                title={ title } 
-                date={ dateSnipped }
-                codeString ={ content }
-                file= {file}
-      
+                id = { snipId } 
+                title = { title } 
+                date = { dateSnipped }
+                codeString = { content }
+                file = { file }
+                tags = { tags }
                 >
-            <NoteMenu id={snipId} onDelete={this.deleteDataItem(snipId)} />
+            <NoteMenu id={snipId} onDelete={this.deleteDataItem} />
+            
           </NoteThumb>  
+          
           <CommentsSection />
           </div>
 

@@ -14,6 +14,7 @@ const NoteList = ({ data }) => {
                 codeString ={ item.content }
                 file= {item.file}
                 comments = {item.comments}
+                tags = { item.tags }
                 >
                 {/* <NoteMenu id={id} onDelete={this.deleteDataItem} onSaveComment={this.addComment} expanded={false} /> */}
                 </NoteThumb>   

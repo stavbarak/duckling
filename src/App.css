@@ -106,6 +106,14 @@ header.header.ant-layout-header a {
   background: #fafafa !important;
 }
 
+.commentsSection {
+  padding: 10px;
+}
+
+.commentsSection h3 {
+  padding: 16px 0;
+}
+
 /* .note-thumb {
   background-color: #f7ea90;
   display: flex;

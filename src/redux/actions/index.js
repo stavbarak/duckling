@@ -8,14 +8,15 @@ import {
   MAKE_CURRENT,
   ADD_COMMENT,
   DELETE_COMMENT,
-  /* CLEAR_CURRENT_COMMENT,
-  SAVE_QUICK_COMMENT, */
+  ADD_TAG,
+  DELETE_TAG,
+  
   SIGN_IN,
   SIGN_OUT
 } from './types';
 
 
-const API_URL = 'http://www.mocky.io/v2/5cf4df2e2f00003a0e4f0503';
+const API_URL = 'http://www.mocky.io/v2/5d00b58c3200008800f9d704';
 
 export const signIn = userId => {
   return {
@@ -172,6 +173,20 @@ export const deleteComment = (comments) => {
   }
 } 
 
+
+export const addTag = (tag) => {
+  return {
+    type: ADD_TAG,
+    payload: tag
+  }
+}
+
+export const deleteTag = (tags) => {
+  return {
+    type: DELETE_TAG,
+    payload: tags
+  }
+}
 
 /* export const switchTab = (tab) => {
   return {

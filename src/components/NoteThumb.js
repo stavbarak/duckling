@@ -3,9 +3,9 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import { connect } from 'react-redux';
-import { deleteDataItem, saveComment } from 'redux/actions';
+import { deleteDataItem } from 'redux/actions';
 import { Link } from "react-router-dom";
-
+import Tags from 'components/Tags';
 
 import { Card } from 'antd';
 const { Meta } = Card;
@@ -16,7 +16,7 @@ class NoteThumb extends Component {
 
 
   render(){
-    const { title, codeString, date, file, id, children, thumbView } = this.props;
+    const { title, codeString, date, file, id, children, thumbView, tags } = this.props;
     return (
       <Card className="note-thumb" 
         title={title}  
@@ -29,7 +29,10 @@ class NoteThumb extends Component {
           <Meta
             description={`Snipped from ${file} at ${date}`}
           />
+          
           <SyntaxHighlighter language='javascript' style={docco}>{codeString}</SyntaxHighlighter>;
+
+          <Tags tags={tags} />
 
       </Card>
     );
@@ -37,12 +40,11 @@ class NoteThumb extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentComment: state.snippets.currentComment
+  currentItem: state.snippets.currentItem
 })
 
 const mapDispatchToProps = dispatch => ({
-  saveComment: (comment, id) => dispatch(saveComment(comment, id)),
-  deleteDataItem: (id) => dispatch(deleteDataItem(id)),
+  deleteDataItem: (id) => dispatch(deleteDataItem(id))
 })
 
 

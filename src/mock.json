@@ -8,7 +8,7 @@
         "dateSnipped": "3/6/2019",
         "content": "const App = () => { return ( <div className='App'> <NoteThumb codeString='bla' /> </div> );}",
         "comments": ["a test snippet", "bla1"],
-        "labels": []
+        "tags": ["Bla"]
     },
     {
         "snipId": "2",
@@ -19,7 +19,7 @@
         "dateSnipped": "3/6/2019",
         "content": "const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;",
         "comments": ["another test snippet", "bla2"],
-        "labels": []
+        "tags": ["Hello", "Bla"]
     },
 
     {
@@ -31,6 +31,6 @@
         "dateSnipped": "3/6/2019",
         "content": "const store = createStore( reducers, composeEnhancers(applyMiddleware(reduxThunk)) );",
         "comments": ["another test snippet", "bla3"],
-        "labels": []
+        "tags": ["Some", "More", "Labels"]
     }
 ]

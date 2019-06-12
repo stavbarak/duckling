@@ -74,10 +74,10 @@ class CommentsSection extends Component {
       render() {
         const { currentCommentLocal } = this.state;
         return (
-          <Card>
-            <div>Comments</div>
+          <Card className="commentsSection">
+            <h3>Comments</h3>
             {this.renderData()}
-            <div>Leave a comment</div>
+            <h3>Leave a comment</h3>
             <AddComment onChange={this.handleInputChange} value={currentCommentLocal} onSubmit={this.addComment} />
           </Card>
         );

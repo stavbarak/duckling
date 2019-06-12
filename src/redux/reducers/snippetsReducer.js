@@ -8,8 +8,8 @@ import {
     ITEM_FETCHED,
     ADD_COMMENT,
     DELETE_COMMENT,
-    /* CLEAR_CURRENT_COMMENT,
-    SAVE_QUICK_COMMENT */
+    ADD_TAG,
+    DELETE_TAG
   } from 'redux/actions/types';
 
 const InitialState = {
@@ -55,20 +55,38 @@ const snippetsReducer = (state = InitialState, action) => {
             }   
             
         case ADD_COMMENT: 
+            const newItemFromAddComment = Object.assign({}, state.currentItem)
+            const { comments } = state.currentItem;
+            newItemFromAddComment.comments = [...comments, action.payload];
 
-            const newItemFromAdd = {...state.currentItem};
-            newItemFromAdd.comments.push(action.payload);
             return {
                 ...state,
-                currentItem: newItemFromAdd
+               currentItem: newItemFromAddComment
             }    
 
         case DELETE_COMMENT:
-            const newItemFromDelete = {...state.currentItem};
-            newItemFromDelete.comments = action.payload;
+            const newItemFromDeleteComment = Object.assign({}, state.currentItem);
+            newItemFromDeleteComment.comments = action.payload;
+
             return {
-                ...state, currentItem: newItemFromDelete
+                ...state, currentItem: newItemFromDeleteComment
             }    
+
+        case ADD_TAG:
+            const newItemFromAddTag = Object.assign({}, state.currentItem);
+            const { tags } = state.currentItem;
+            newItemFromAddTag.tags = [...tags, action.payload];
+            return {
+                ...state,
+                currentItem: newItemFromAddTag
+            }
+
+        case DELETE_TAG:
+            const newItemFromDeleteTag = Object.assign({}, state.currentItem);
+            newItemFromDeleteTag.tags = action.payload;
+            return {
+                ...state, currentItem: newItemFromDeleteTag
+            }      
         default:
             return state;
     }
