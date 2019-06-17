@@ -1,24 +1,20 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Layout, Menu, Icon } from 'antd';
-/* import { withRouter } from "react-router"; */
 import { Link } from "react-router-dom";
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
+const LayoutWrapper = (props) => {
+    
+    const [collapsed, setCollapsed] = useState(false);
+    const { children } = props;
 
-class LayoutWrapper extends Component {
-    state = {
-      collapsed: false,
+    const onCollapse = collapsed => {
+        console.log(collapsed);
+        setCollapsed({ collapsed })
     };
-  
-    onCollapse = collapsed => {
-      console.log(collapsed);
-      this.setState({ collapsed });
-    };
-  
-    render() {
-      const { children } = this.props;
-      return (
+
+    return (
         <Layout>
             <Header className="header" style={{ padding: '40px 10px', display: 'flex', alignItems: 'center', color: '#fff'}}>
                 <Link to= "/">
@@ -40,7 +36,7 @@ class LayoutWrapper extends Component {
             </Header>
             <Content >
                 <Layout style={{ padding: '24px 0', background: '#fff' }}>
-                    <Sider width={200} style={{ background: '#fff' }} collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+                    <Sider width={200} style={{ background: '#fff' }} collapsible collapsed={collapsed} onCollapse={onCollapse}>
                     <Menu
                         mode="inline"
                         defaultSelectedKeys={['1']}
@@ -94,8 +90,8 @@ class LayoutWrapper extends Component {
                 </Layout>
             </Content>
         </Layout>
-      );
-    }
-  }
+    )
+}
+
 
 export default LayoutWrapper;

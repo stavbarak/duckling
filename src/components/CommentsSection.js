@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { deleteDataItem, clearDataItem, fetchDataItem, saveComment, deleteComment } from 'redux/actions';
 import { Skeleton, Icon, Button, Card } from 'antd';
@@ -6,83 +6,73 @@ import NoteComment from 'components/NoteComment';
 import AddComment from 'components/AddComment';
 
 
-class CommentsSection extends Component {
+const CommentsSection = (props) => {
 
-    state = { currentCommentLocal: '' };
+  const [currentCommentLocal, setCurrentCommentLocal] = useState('');
 
-    handleInputChange = (evt) => {
-        this.setState({
-          currentCommentLocal: evt.target.value
-        })
-      } 
+  const handleInputChange = (evt) => {
+    setCurrentCommentLocal(evt.target.value);
+  } 
 
-    addComment = () => {
-        const { saveComment, currentItem } = this.props;      
-        const { currentCommentLocal } = this.state;
-        if (currentCommentLocal!=='') {   
-                 
-            saveComment(currentCommentLocal, currentItem.snipId);
-        
-            this.setState ({
-                currentCommentLocal: '',
-            })
-        }   
-    }  
-
-    deleteComment = (comments, index) => {
-        const { deleteComment } = this.props;  
-        let spliced = [...comments];
-        spliced.splice(index, 1);
-        deleteComment(spliced);
+  const addComment = () => {
+    const { saveComment, currentItem } = props;      
+    if (currentCommentLocal!=='') {              
+        saveComment(currentCommentLocal, currentItem.snipId);    
+        setCurrentCommentLocal('');
     }   
+  }  
 
-    renderComments(comments) {
-        let commentsList = comments.map((comment, i) => {
-          
-          return (   
-              <div key={i}>
-                <div className="commentContainer">
-                  <NoteComment comment={comment}></NoteComment>
-                  <span>
-                      <Button size="large" type="link" className="deleteButton" onClick={()=>this.deleteComment(comments, i)}>
-                            <Icon type="delete" />
-                      </Button>
-                  </span>
-                </div>
-              </div>
-          )
-      });
-      return commentsList;
-      }
+  const deleteComment = (comments, index) => {
+    const { deleteComment } = props;  
+    let spliced = [...comments];
+    spliced.splice(index, 1);
+    deleteComment(spliced);
+  }  
 
-      renderData() {
-        const { currentItem } = this.props;
-    
-        if(!currentItem) {
-          return (
-            <Skeleton active />
+  const renderComments = (comments) => {
+    let commentsList = comments.map((comment, i) => {
+      
+      return (   
+          <div key={i}>
+            <div className="commentContainer">
+              <NoteComment comment={comment}></NoteComment>
+              <span>
+                  <Button size="large" type="link" className="deleteButton" onClick={()=>deleteComment(comments, i)}>
+                        <Icon type="delete" />
+                  </Button>
+              </span>
+            </div>
+          </div>
+      )
+    });
+    return commentsList;
+    }
+
+
+    const renderData = () => {
+      const { currentItem } = props;
+  
+      if(!currentItem) {
+        return (
+          <Skeleton active />
           )
         } else {
             const { comments } = currentItem;
             return (
-                <div>{this.renderComments(comments)}</div>
+                <div>{renderComments(comments)}</div>
                 
             )
         }
-      }
+    }
 
-      render() {
-        const { currentCommentLocal } = this.state;
-        return (
-          <Card className="commentsSection">
-            <h3>Comments</h3>
-            {this.renderData()}
-            <h3>Leave a comment</h3>
-            <AddComment onChange={this.handleInputChange} value={currentCommentLocal} onSubmit={this.addComment} />
-          </Card>
-        );
-      } 
-
+    return (
+      <Card className="commentsSection">
+        <h3>Comments</h3>
+        {renderData()}
+        <h3>Leave a comment</h3>
+        <AddComment onChange={handleInputChange} value={currentCommentLocal} onSubmit={addComment} />
+      </Card>
+    );
 }
 
 

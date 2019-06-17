@@ -5,7 +5,7 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { connect } from 'react-redux';
 import { deleteDataItem } from 'redux/actions';
 import { Link } from "react-router-dom";
-import Tags from 'components/Tags';
+import TagsClass from 'components/TagsClass';
 
 import { Card } from 'antd';
 const { Meta } = Card;
@@ -28,7 +28,7 @@ const NoteThumb = ({ title, codeString, date, file, id, children, thumbView, tag
         
         <SyntaxHighlighter language='javascript' style={docco}>{codeString}</SyntaxHighlighter>
 
-      { thumbView? null : <Tags tags={tags}  /> }
+      { thumbView? null : <TagsClass tags={tags}  /> }
 
     </Card>
   );

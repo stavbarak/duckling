@@ -8,29 +8,29 @@ import CommentsSection from 'components/CommentsSection';
 
 const NoteEdit = (props) => {
 
+  const { id } = props.match.params;
+  const { fetchDataItem, clearDataItem, history } = props;
+
   useEffect(() => {
     fetchNote();
     return () => {
       clearNote();
+      /* (() => {
+        clearDataItem();
+      })() */
     }
   }, []);
 
   const fetchNote = () => {
-    const { id } = props.match.params;
-    const { fetchDataItem } = props;
-
     fetchDataItem(id);
   }
 
   const clearNote = () => {
-    const { clearDataItem } = props;
     clearDataItem();
   }
 
 
   const deleteDataItem = () => {   
-    const { id } = props.match.params;
-    const { deleteDataItem, history } = props;
     history.push('/');
     deleteDataItem(id);
   }
