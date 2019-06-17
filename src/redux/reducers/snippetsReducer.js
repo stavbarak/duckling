@@ -76,6 +76,7 @@ const snippetsReducer = (state = InitialState, action) => {
             const newItemFromAddTag = Object.assign({}, state.currentItem);
             const { tags } = state.currentItem;
             newItemFromAddTag.tags = [...tags, action.payload];
+            console.log(newItemFromAddTag)
             return {
                 ...state,
                 currentItem: newItemFromAddTag

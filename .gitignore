@@ -25,6 +25,7 @@ yarn-error.log*
 
 #temp
 /src/components/withHighlighting.js
+/src/components/PlayboardView.js
 /src/contexts
 /src/mock.json
 /src/mock2.json

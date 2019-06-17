@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
@@ -11,33 +11,29 @@ import { Card } from 'antd';
 const { Meta } = Card;
 
 
-class NoteThumb extends Component {
+const NoteThumb = ({ title, codeString, date, file, id, children, thumbView, tags }) => {  
 
+  return (
+    <Card className="note-thumb" 
+      title={title}  
+      extra={
+        thumbView ? 
+        <Link to={`/edit/${id}`}>More </Link> : 
+        children
+      }
+      >   
+        <Meta
+          description={`Snipped from ${file} at ${date}`}
+        />
+        
+        <SyntaxHighlighter language='javascript' style={docco}>{codeString}</SyntaxHighlighter>
 
+      { thumbView? null : <Tags tags={tags}  /> }
 
-  render(){
-    const { title, codeString, date, file, id, children, thumbView, tags } = this.props;
-    return (
-      <Card className="note-thumb" 
-        title={title}  
-        extra={
-          thumbView ? 
-          <Link to={`/edit/${id}`}>More </Link> : 
-          children
-        }
-        >   
-          <Meta
-            description={`Snipped from ${file} at ${date}`}
-          />
-          
-          <SyntaxHighlighter language='javascript' style={docco}>{codeString}</SyntaxHighlighter>;
-
-          <Tags tags={tags} />
-
-      </Card>
-    );
-  }
+    </Card>
+  );
 }
+
 
 const mapStateToProps = (state) => ({
   currentItem: state.snippets.currentItem
