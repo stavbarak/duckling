@@ -7,12 +7,15 @@ import { addTag, deleteTag } from 'redux/actions';
 const Tags = (props) => {
     const [inputVisible, setInputVisible] = useState(false);
     const [inputValue, setInputValue] = useState('');
+    const inputEl = useRef(null);
 
     useEffect(() => {
-        if(!inputEl === null) inputEl.current.focus(); 
+        setTimeout(() =>{
+            inputEl.current && inputEl.current.focus(); 
+        })
+        
     }, [inputVisible]);
-    
-    const inputEl = useRef(null);
+
 
     const handleClose = (removedTag) => {   
         const { tags, deleteTag } = props;

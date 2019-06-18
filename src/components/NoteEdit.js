@@ -11,16 +11,6 @@ const NoteEdit = (props) => {
   const { id } = props.match.params;
   const { fetchDataItem, clearDataItem, history } = props;
 
-  useEffect(() => {
-    fetchNote();
-    return () => {
-      clearNote();
-      /* (() => {
-        clearDataItem();
-      })() */
-    }
-  }, []);
-
   const fetchNote = () => {
     fetchDataItem(id);
   }
@@ -29,42 +19,50 @@ const NoteEdit = (props) => {
     clearDataItem();
   }
 
+  useEffect(() => {
+    fetchNote();
+    return () => {
+      clearNote();
+    }
+  }, []);
 
-  const deleteDataItem = () => {   
+
+  const deleteDataItem = () => {
     history.push('/');
     deleteDataItem(id);
   }
-  
-  if(!props.currentItem) {
+
+  if (!props.currentItem) {
     return (
       <Skeleton active />
     )
   } else {
-      const { title, snipId, content, dateSnipped, file, tags } = props.currentItem;
-      return (
-        <div>
-        <NoteThumb                       
-              id = { snipId } 
-              title = { title } 
-              date = { dateSnipped }
-              codeString = { content }
-              file = { file }
-              tags = { tags }
-              >
+    const { title, snipId, content, dateSnipped, file, tags } = props.currentItem;
+    return (
+      <div>
+        <NoteThumb
+          id={snipId}
+          title={title}
+          date={dateSnipped}
+          codeString={content}
+          file={file}
+          tags={tags}
+        >
           <NoteMenu id={snipId} onDelete={deleteDataItem} />
-          
-        </NoteThumb>  
-        
-        <CommentsSection />
-        </div>
 
-      )
+        </NoteThumb>
+
+        <CommentsSection />
+      </div>
+
+    )
   }
 }
 
-const mapStateToProps = (state) => ({
-  currentItem: state.snippets.currentItem
-})
+const mapStateToProps = ({ snippets: { currentItem } }) => {
+
+  return { currentItem };
+}
 
 const mapDispatchToProps = dispatch => ({
   deleteComment: (comment, id) => dispatch(deleteComment(comment, id)),
