@@ -1,36 +1,39 @@
 [
     {
         "snipId": "1",
-        "title": "first test",
+        "title": "meta snippet",
         "language": "javascript",
         "category": "documentation",
         "file" : "App.js",
-        "dateSnipped": "3/6/2019",
+        "dateSnipped": "3/5/2019",
         "content": "const App = () => { return ( <div className='App'> <NoteThumb codeString='bla' /> </div> );}",
         "comments": ["a test snippet", "bla1"],
-        "tags": ["Bla"]
+        "tags": ["Bla"],
+        "labels": ["#TODO", "#TEST"]
     },
     {
         "snipId": "2",
-        "title": "second test",
+        "title": "redux devtools",
         "language": "javascript",
         "category": "cheat",
         "file" : "Root.js",
         "dateSnipped": "3/6/2019",
         "content": "const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;",
         "comments": ["another test snippet", "bla2"],
-        "tags": ["Hello", "Bla"]
+        "tags": ["Hello", "Bla"],
+        "labels": ["#TODO", "#HACK"]
     },
 
     {
         "snipId": "3",
-        "title": "third test",
+        "title": "redux store",
         "language": "javascript",
         "category": "cheat",
         "file" : "Root.js",
-        "dateSnipped": "3/6/2019",
+        "dateSnipped": "3/4/2019",
         "content": "const store = createStore( reducers, composeEnhancers(applyMiddleware(reduxThunk)) );",
         "comments": ["another test snippet", "bla3"],
-        "tags": ["Some", "More", "Labels"]
+        "tags": ["Some", "More", "Labels"],
+        "labels": ["#HACK", "DEBUG"]
     }
 ]

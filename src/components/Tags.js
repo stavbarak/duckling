@@ -9,6 +9,8 @@ const Tags = (props) => {
     const [inputValue, setInputValue] = useState('');
     const inputEl = useRef(null);
 
+    const { tags, deleteTag, addTag, color, label } = props;
+
     useEffect(() => {
         setTimeout(() =>{
             inputEl.current && inputEl.current.focus(); 
@@ -18,7 +20,7 @@ const Tags = (props) => {
 
 
     const handleClose = (removedTag) => {   
-        const { tags, deleteTag } = props;
+        /* const { tags, deleteTag } = props; */
         const newTags = tags.filter(tag => tag !== removedTag);
         deleteTag(newTags);
     };
@@ -33,7 +35,7 @@ const Tags = (props) => {
     };
 
     const handleInputConfirm = () => {
-        const { tags, addTag } = props;
+        /* const { tags, addTag } = props; */
         if (inputValue && tags.indexOf(inputValue) === -1) {
             addTag(inputValue);
         }
@@ -47,7 +49,7 @@ const Tags = (props) => {
         return tags.map((tag, index) => {
             const isLongTag = tag.length > 20;
             const tagElem = (
-              <Tag key={tag} color="purple" closable={true} onClose={() => handleClose(tag)}>
+              <Tag key={tag} color={color} closable={!label} onClose={() => handleClose(tag)}>
                 {isLongTag ? `${tag.slice(0, 20)}...` : tag}
               </Tag>
             );
@@ -62,8 +64,8 @@ const Tags = (props) => {
       }
 
       return (
-        <div>       
-          { renderTags(props.tags) }
+        <>       
+          { renderTags(tags) }
           {inputVisible && (
             <Input
               ref={inputEl}
@@ -76,12 +78,12 @@ const Tags = (props) => {
               onPressEnter={handleInputConfirm}
             />
           )}
-          {!inputVisible && (
+          {!label &&!inputVisible && (
             <Tag onClick={showInput} style={{ background: '#fff', borderStyle: 'dashed' }}>
               <Icon type="plus" /> New Tag
             </Tag>
           )}
-        </div>
+        </>
       );
 }
   

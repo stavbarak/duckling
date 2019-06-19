@@ -9,7 +9,8 @@ import {
     ADD_COMMENT,
     DELETE_COMMENT,
     ADD_TAG,
-    DELETE_TAG
+    DELETE_TAG,
+    ORDER_NOTES_BY_DATE
   } from 'redux/actions/types';
 
 const InitialState = {
@@ -27,6 +28,16 @@ const snippetsReducer = (state = InitialState, action) => {
                 data: action.payload,
                 loaded: true
             }
+
+        case ORDER_NOTES_BY_DATE:
+            const dataByDate = [...state.data].sort((a, b) => {
+                return a.dateSnipped > b.dateSnipped ? 1 : -1;
+            });
+            
+            return {
+                ...state,
+                data: dataByDate
+            }    
         case ITEM_FETCHED:
             return {
                 ...state,

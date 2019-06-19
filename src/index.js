@@ -9,16 +9,14 @@ import LayoutWrapper from 'components/LayoutWrapper';
 
 ReactDOM.render(
     <Root >
-        
-            <BrowserRouter>
+        <BrowserRouter>
             <LayoutWrapper>
                 <Switch>               
                     <Route path="/edit/:id" component={ NoteEdit } /> 
                     <Route exact path="/" component={ App } />
                 </Switch>
-                </LayoutWrapper>
-            </BrowserRouter>
-     
+            </LayoutWrapper>
+        </BrowserRouter>
     </Root>,
     
     

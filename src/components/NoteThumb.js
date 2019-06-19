@@ -4,22 +4,21 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import { connect } from 'react-redux';
 import { deleteDataItem } from 'redux/actions';
-import { Link } from "react-router-dom";
-/* import TagsClass from 'components/TagsClass'; */
 import Tags from 'components/Tags';
+import NoteThumbExtra from 'components/NoteThumbExtra';
 
 import { Card } from 'antd';
 const { Meta } = Card;
 
 
-const NoteThumb = ({ title, codeString, date, file, id, children, thumbView, tags }) => {  
-
+const NoteThumb = ({ title, codeString, date, file, id, children, thumbView, tags, labels }) => {  
   return (
     <Card className="note-thumb" 
       title={title}  
       extra={
         thumbView ? 
-        <Link to={`/edit/${id}`}>More </Link> : 
+        <NoteThumbExtra id={id} labels={labels} />
+          : 
         children
       }
       >   
@@ -29,7 +28,7 @@ const NoteThumb = ({ title, codeString, date, file, id, children, thumbView, tag
         
         <SyntaxHighlighter language='javascript' style={docco}>{codeString}</SyntaxHighlighter>
 
-      { thumbView? null : <Tags tags={tags}  /> }
+      { thumbView? null : <Tags tags={tags} label={false} color={"purple"} /> }
 
     </Card>
   );

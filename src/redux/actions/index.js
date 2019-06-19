@@ -10,13 +10,15 @@ import {
   DELETE_COMMENT,
   ADD_TAG,
   DELETE_TAG,
+  ORDER_NOTES_BY_DATE,
+  FILTER_NOTES_BY_LABEL,
   
   SIGN_IN,
   SIGN_OUT
 } from './types';
 
 
-const API_URL = 'http://www.mocky.io/v2/5d00b58c3200008800f9d704';
+const API_URL = 'http://www.mocky.io/v2/5d0a174c3400005e29d83311';
 
 export const signIn = userId => {
   return {
@@ -39,8 +41,12 @@ export async function fetchData(dispatch) {
         response => response.json(),
         error => console.log('An error occurred.', error)
       )
-      .then(json =>
+      .then((json) => {
         dispatch(dataFetched(json))
+        dispatch(orderNotesByDate(json))
+
+      }
+       
       )
 }
 
@@ -62,13 +68,6 @@ export function fetchDataItem(id) {
         })
   }
 }
-
-/* export function saveQuickComment(comment) {
-  return {
-    type: SAVE_QUICK_COMMENT,
-    payload: comment
-  }
-} */
 
 
 export function deleteDataItem(id) {   
@@ -98,14 +97,6 @@ export function clearDataItem(currentItem) {
     payload: currentItem
   }
 }
-
-/* export function clearCurrentComment() {
-  return {
-    type: CLEAR_CURRENT_COMMENT,
-  }
-} */
-
-
 
 export function itemDetailsFetched() {
   return {
@@ -188,9 +179,16 @@ export const deleteTag = (tags) => {
   }
 }
 
-/* export const switchTab = (tab) => {
+export const orderNotesByDate = (data) => {
   return {
-      type: SWITCH_TAB,
-      payload: tab
+      type: ORDER_NOTES_BY_DATE,
+      payload: data
   }
-} */
+}
+
+export const filterNotesByLabel = (labels) => {
+  return {
+    type: FILTER_NOTES_BY_LABEL,
+    payload: labels
+  }
+}

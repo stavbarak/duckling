@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { filterNotesByLabel } from 'redux/actions';
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -93,5 +95,14 @@ const LayoutWrapper = (props) => {
     )
 }
 
-
-export default LayoutWrapper;
+const mapStateToProps = ({ snippets: { data} }) => {
+    console.log(data)
+    return { data };
+}
+  
+  const mapDispatchToProps = dispatch => ({
+    filterNotesByLabel: (labels) => dispatch(filterNotesByLabel(labels))
+  })
+  
+  
+export default connect(mapStateToProps, mapDispatchToProps)(LayoutWrapper);

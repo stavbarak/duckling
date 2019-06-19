@@ -60,7 +60,6 @@ const NoteEdit = (props) => {
 }
 
 const mapStateToProps = ({ snippets: { currentItem } }) => {
-
   return { currentItem };
 }
 
