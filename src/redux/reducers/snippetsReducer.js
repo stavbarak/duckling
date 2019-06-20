@@ -10,7 +10,9 @@ import {
     DELETE_COMMENT,
     ADD_TAG,
     DELETE_TAG,
-    ORDER_NOTES_BY_DATE
+    ORDER_NOTES_BY_DATE,
+    /* FILTER_NOTES_BY_LABEL, */
+    NOTES_FILTERED
   } from 'redux/actions/types';
 
 const InitialState = {
@@ -38,6 +40,19 @@ const snippetsReducer = (state = InitialState, action) => {
                 ...state,
                 data: dataByDate
             }    
+        case NOTES_FILTERED:
+
+            return {
+                ...state,
+                data: action.payload
+            }  
+
+        /* case FILTER_NOTES_BY_LABEL:
+            const dataByLabel = [...state.data].filter(item => item.labels.includes(action.payload))        
+            return {
+                ...state,
+                data: dataByLabel
+            }   */   
         case ITEM_FETCHED:
             return {
                 ...state,

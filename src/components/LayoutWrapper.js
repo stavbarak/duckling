@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { filterNotesByLabel } from 'redux/actions';
+import { filterNotesByLabel, fetchData } from 'redux/actions';
+import SelectWrapper from 'components/SelectWrapper';
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -10,6 +11,8 @@ const LayoutWrapper = (props) => {
     
     const [collapsed, setCollapsed] = useState(false);
     const { children } = props;
+    const labels = ["#TODO", "#HACK", "#DEBUG"];
+    const languages = ["Javascript", "Python", "Java"];
 
     const onCollapse = collapsed => {
         console.log(collapsed);
@@ -35,7 +38,14 @@ const LayoutWrapper = (props) => {
                     style={{ lineHeight: '64px' }}
                 >                   
                 </Menu>
+
             </Header>
+            <div className="filtersContainer">   
+                {/* <span>Filters</span> */}
+                <SelectWrapper labels={labels} placeholder={'Label'} />
+                <SelectWrapper labels={languages} placeholder={'Language'} />
+        
+            </div>
             <Content >
                 <Layout style={{ padding: '24px 0', background: '#fff' }}>
                     <Sider width={200} style={{ background: '#fff' }} collapsible collapsed={collapsed} onCollapse={onCollapse}>
@@ -73,6 +83,9 @@ const LayoutWrapper = (props) => {
                         <Menu.Item key="7">Java</Menu.Item>
   
                         </SubMenu>
+
+                       
+
                         <SubMenu
                         key="sub3"
                         title={
@@ -82,9 +95,10 @@ const LayoutWrapper = (props) => {
                             </span>
                         }
                         >
-                        <Menu.Item key="9">#TODO</Menu.Item>
-                        <Menu.Item key="10">#HACK</Menu.Item>
-                        <Menu.Item key="11">#DEBUG</Menu.Item>
+                        
+                        <Menu.Item key="9" >#TODO</Menu.Item>
+                        <Menu.Item key="10" >#HACK</Menu.Item>
+                        <Menu.Item key="11" >#DEBUG</Menu.Item>
                         </SubMenu>
                     </Menu>
                     </Sider>
@@ -96,11 +110,11 @@ const LayoutWrapper = (props) => {
 }
 
 const mapStateToProps = ({ snippets: { data} }) => {
-    console.log(data)
     return { data };
 }
   
   const mapDispatchToProps = dispatch => ({
+    fetchData: () => dispatch(fetchData),
     filterNotesByLabel: (labels) => dispatch(filterNotesByLabel(labels))
   })
   

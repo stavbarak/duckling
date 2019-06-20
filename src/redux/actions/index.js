@@ -11,14 +11,15 @@ import {
   ADD_TAG,
   DELETE_TAG,
   ORDER_NOTES_BY_DATE,
-  FILTER_NOTES_BY_LABEL,
+  /* FILTER_NOTES_BY_LABEL, */
+  NOTES_FILTERED,
   
   SIGN_IN,
   SIGN_OUT
 } from './types';
 
 
-const API_URL = 'http://www.mocky.io/v2/5d0a21d33400001229d83383';
+const API_URL = 'http://www.mocky.io/v2/5d0b2f052f00004a00e3ee6c';
 
 export const signIn = userId => {
   return {
@@ -186,9 +187,40 @@ export const orderNotesByDate = (data) => {
   }
 }
 
-export const filterNotesByLabel = (labels) => {
-  return {
-    type: FILTER_NOTES_BY_LABEL,
-    payload: labels
+
+
+export const filterNotesByLabel = (values) => {
+  return async function (dispatch) {
+    return await fetch(API_URL, {
+      method: 'GET'
+    })
+      .then(
+        response => response.json(),
+        error => console.log('An error occurred.', error)
+      )
+      .then(json => {    
+        const dataByLabel = json.filter(item => {
+          const filtered = values.find(value => {
+            return item.labels.indexOf(value) !== -1;
+          })
+          return filtered;
+        })
+
+        dispatch(notesFiltered(dataByLabel))
+      })
   }
 }
+
+export const notesFiltered = (data) => {
+  return {
+    type: NOTES_FILTERED,
+    payload: data
+  }
+}
+
+/* export const filterNotesByLabel = (label) => {
+  return {
+    type: FILTER_NOTES_BY_LABEL,
+    payload: label
+  }
+} */

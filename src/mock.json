@@ -34,6 +34,6 @@
         "content": "const dataByDate = [...state.data].sort((a, b) => { \n    return a.dateSnipped > b.dateSnipped ? 1 : -1; \n });",
         "comments": ["another test snippet", "bla3"],
         "tags": ["Some", "More", "Labels"],
-        "labels": ["#HACK", "DEBUG"]
+        "labels": ["#HACK", "#DEBUG"]
     }
 ]

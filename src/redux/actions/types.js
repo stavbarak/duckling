@@ -15,6 +15,7 @@ export const ADD_TAG = 'ADD_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 export const ORDER_NOTES_BY_DATE = 'ORDER_NOTES_BY_DATE';
 export const FILTER_NOTES_BY_LABEL = 'FILTER_NOTES_BY_LABEL';
+export const NOTES_FILTERED = 'NOTES_FILTERED';
 
 // auth
 export const LOAD_GAPI = 'LOAD_GAPI';
