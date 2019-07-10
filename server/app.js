@@ -30,7 +30,7 @@ function getMongoClient() {
 
 async function init() {
     console.log('starting...')
-    console.log(port)
+    console.log('port', port)
     const mongoClient = await getMongoClient();
     const db = mongoClient.db();
     const collection = db.collection('snippets');
