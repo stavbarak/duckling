@@ -23,6 +23,7 @@ function getMongoClient() {
               console.error(err)
               return
             }
+            console.log('Successfully connected to Mongo')
             resolve(client);
         })
     }) 
@@ -30,9 +31,9 @@ function getMongoClient() {
 
 async function init() {
     console.log('starting...')
-    console.log('port', port)
     const mongoClient = await getMongoClient();
     const db = mongoClient.db();
+    
     const collection = db.collection('snippets');
 
     app.post('/snippet/:title', (req, res) => {
