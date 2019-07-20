@@ -1,5 +1,5 @@
 {
-  "name": "duckling-server",
+  "name": "duckling",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -19,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stavbarak/duckling-server.git"
+    "url": "git+https://github.com/stavbarak/duckling.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stavbarak/duckling-server/issues"
+    "url": "https://github.com/stavbarak/duckling/issues"
   },
   "homepage": "https://github.com/stavbarak/duckling-server#readme"
 }
