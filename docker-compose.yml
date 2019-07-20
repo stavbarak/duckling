@@ -3,7 +3,7 @@ services:
   app:
     image: "node:12-alpine"
     volumes:
-    - ./server/:/app
+    - ./:/app
     working_dir: /app
     command:
     - app.js
