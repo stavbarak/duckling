@@ -63,7 +63,8 @@ async function init() {
         })
     })
 
-    app.use('/', express.static('client'))
+
+    app.use('/', express.static('./client/build'))
     console.log('ready to listen')
     app.listen(port)
 }
