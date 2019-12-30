@@ -12,4 +12,3 @@ services:
     environment:
       - PORT=8080
       - MONGO__HOST=mongo
-      - MONGODB_URI=${MONGODB_URI}
