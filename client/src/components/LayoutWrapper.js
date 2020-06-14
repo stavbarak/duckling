@@ -16,7 +16,7 @@ const LayoutWrapper = (props) => {
 
     const onCollapse = collapsed => {
         console.log(collapsed);
-        setCollapsed({ collapsed })
+        setCollapsed(collapsed)
     };
 
     return (
